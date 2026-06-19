@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://michellbuke1951.github.io/web-winscore-com-2/sitemap.xml

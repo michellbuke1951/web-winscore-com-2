@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>捷报比分 · 数据导航站</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, 'Segoe UI', 'Noto Sans SC', 'Helvetica Neue', sans-serif;
+      background-color: #f9f6f0;  /* 米白基调 */
+      color: #2c2c2c;
+      line-height: 1.7;
+      padding: 2rem 1.5rem;
+    }
+
+    .container {
+      max-width: 880px;
+      margin: 0 auto;
+      background: rgba(255, 252, 245, 0.7);
+      border-radius: 28px;
+      padding: 2.4rem 2.2rem;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.02);
+    }
+
+    /* 顶部导航 - 轻量极简 */
+    .top-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.8rem 1rem;
+      padding-bottom: 1.6rem;
+      border-bottom: 1px solid #e6ddd0;
+      margin-bottom: 2.2rem;
+    }
+
+    .site-name {
+      font-size: 1.25rem;
+      font-weight: 520;
+      letter-spacing: 0.02em;
+      color: #4a3f32;
+    }
+
+    .site-name a {
+      color: inherit;
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    .site-name a:hover {
+      border-bottom-color: #b0a188;
+    }
+
+    .nav-meta {
+      display: flex;
+      gap: 1.8rem;
+      font-size: 0.9rem;
+    }
+
+    .nav-meta span {
+      color: #6f675c;
+      opacity: 0.8;
+    }
+
+    /* Hero 区 - 介绍 */
+    .hero {
+      margin-bottom: 2.8rem;
+    }
+
+    .hero h1 {
+      font-size: 1.9rem;
+      font-weight: 540;
+      letter-spacing: -0.01em;
+      line-height: 1.3;
+      color: #2f2a22;
+      margin-bottom: 0.8rem;
+    }
+
+    .hero h1 small {
+      font-size: 1.1rem;
+      font-weight: 380;
+      color: #786f61;
+      margin-left: 0.3rem;
+    }
+
+    .hero p {
+      font-size: 1.02rem;
+      margin-bottom: 1.2rem;
+      color: #3c372f;
+    }
+
+    .hero .intro-highlight {
+      background: #ede7dc;
+      padding: 0.8rem 1.4rem;
+      border-radius: 20px;
+      border-left: 5px solid #b7a88c;
+      font-size: 0.98rem;
+      color: #2f2a22;
+    }
+
+    .hero .intro-highlight a {
+      color: #3d3529;
+      text-decoration: underline;
+      text-decoration-color: #c5b69b;
+      text-underline-offset: 3px;
+      font-weight: 500;
+    }
+
+    .hero .intro-highlight a:hover {
+      color: #1e1a14;
+    }
+
+    /* 三个场景模块 */
+    .scenes {
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+      margin: 2.2rem 0 2.4rem;
+    }
+
+    .scene-card {
+      background: #f5f0e8;
+      padding: 1.4rem 1.8rem;
+      border-radius: 24px;
+      transition: background 0.2s;
+      border: 1px solid #e3dace;
+    }
+
+    .scene-card:hover {
+      background: #efebe1;
+    }
+
+    .scene-card h3 {
+      font-size: 1.2rem;
+      font-weight: 520;
+      color: #3f382d;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .scene-card h3::before {
+      content: "▹";
+      font-size: 1.3rem;
+      color: #8d806b;
+    }
+
+    .scene-card p {
+      color: #4c4438;
+      font-size: 0.98rem;
+      margin-left: 1.5rem;
+      max-width: 95%;
+    }
+
+    /* 提示框 / 引用块 */
+    .info-block {
+      background: #e7e1d4;
+      padding: 1.2rem 1.8rem;
+      border-radius: 18px;
+      margin: 2rem 0 1.8rem;
+      border: 1px solid #d6cdbc;
+      color: #2e2a22;
+      font-size: 0.96rem;
+    }
+
+    .info-block strong {
+      font-weight: 550;
+      color: #2f2a1f;
+    }
+
+    .info-block a {
+      color: #3d3529;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .faq-mini {
+      background: #faf7f1;
+      border-radius: 20px;
+      padding: 1.2rem 1.8rem;
+      margin: 1.8rem 0 0.5rem;
+      border: 1px solid #ded6c7;
+    }
+
+    .faq-mini h4 {
+      font-weight: 540;
+      font-size: 1rem;
+      margin-bottom: 0.6rem;
+      color: #3b352b;
+    }
+
+    .faq-mini ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .faq-mini li {
+      padding: 0.4rem 0;
+      border-bottom: 1px dashed #dad1c0;
+    }
+
+    .faq-mini li:last-child {
+      border-bottom: none;
+    }
+
+    .faq-mini li::before {
+      content: "•";
+      color: #8d806b;
+      display: inline-block;
+      width: 1.2rem;
+    }
+
+    .footer-note {
+      margin-top: 2.8rem;
+      padding-top: 1.2rem;
+      border-top: 1px solid #e0d7c8;
+      font-size: 0.85rem;
+      color: #6b6357;
+      text-align: center;
+    }
+
+    .footer-note a {
+      color: #4d4436;
+      text-decoration: none;
+      border-bottom: 1px solid #c6baa8;
+    }
+
+    .footer-note a:hover {
+      border-color: #8f8068;
+    }
+
+    /* 响应式 */
+    @media (max-width: 540px) {
+      body {
+        padding: 1rem 0.8rem;
+      }
+      .container {
+        padding: 1.6rem 1.2rem;
+      }
+      .hero h1 {
+        font-size: 1.6rem;
+      }
+      .scene-card {
+        padding: 1.2rem 1.2rem;
+      }
+      .scene-card p {
+        margin-left: 0.8rem;
+      }
+      .top-nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- 顶部导航 -->
+  <div class="top-nav">
+    <div class="site-name">
+      <a href="https://web-winscore.com">捷报比分</a>
+    </div>
+    <div class="nav-meta">
+      <span>赛事数据</span>
+      <span>实时动态</span>
+      <span>统计参考</span>
+    </div>
+  </div>
+
+  <!-- Hero 介绍区 -->
+  <div class="hero">
+    <h1>赛事信息整合 <small>· 轻量导航</small></h1>
+    <p>
+      <strong>捷报比分</strong> 并不是一个预测平台，而是面向足球与篮球爱好者提供赛事数据、即时比分和赛程结构的汇总节点。站内信息以公开数据为基础，经过筛选与分类，帮助用户更快速地定位到需要的比赛内容。
+    </p>
+    <div class="intro-highlight">
+      站点本身不设立场，不推荐投注，仅作为信息呈现渠道。若你需要参考完整的赛事列表与比分结构，可直接访问 
+      <a href="https://web-winscore.com">捷报比分</a> 了解当前覆盖的联赛与杯赛数据范围。
+    </div>
+  </div>
+
+  <!-- 三个场景模块 -->
+  <div class="scenes">
+
+    <div class="scene-card">
+      <h3>赛程速览与结构梳理</h3>
+      <p>不论是五大联赛还是次级赛事，页面按时间轴与赛事类别划分，减少信息过载。用户可自行筛选特定日期或联赛，无需等待冗长的加载。</p>
+    </div>
+
+    <div class="scene-card">
+      <h3>实时比分与基础统计</h3>
+      <p>比赛进行中提供进球的实时更新、红黄牌、换人及部分射门数据。所有统计均来自公开信号源，不嵌入主观评价，保持中立呈现。</p>
+    </div>
+
+    <div class="scene-card">
+      <h3>历史数据回溯</h3>
+      <p>对于已结束的比赛，保留完整的最终比分及事件记录。适合复盘或单纯回顾某场关键对决的过程，数据颗粒度适中。</p>
+    </div>
+
+  </div>
+
+  <!-- 提示块：可信说明 -->
+  <div class="info-block">
+    <strong>关于信息来源：</strong> 平台聚合的数据来自多家体育数据供应商，并经过交叉比对。尽管如此，数据可能存在延迟或极少数偏差，建议结合多个渠道参考。 
+    <a href="https://web-winscore.com">捷报比分</a> 本身不存储任何用户隐私数据，也不要求注册或登录。
+  </div>
+
+  <!-- FAQ 摘要 -->
+  <div class="faq-mini">
+    <h4>常见理解点</h4>
+    <ul>
+      <li>数据更新频率约为每分钟一次，重要赛事会缩短间隔。</li>
+      <li>页面不包含聊天室、论坛或即时评论，仅展示结构化数据。</li>
+      <li>手机端与桌面端布局自适应，核心功能一致。</li>
+      <li>如果发现某场比赛数据缺失，通常是信号源临时中断，稍后恢复。</li>
+    </ul>
+  </div>
+
+  <!-- 底部 -->
+  <div class="footer-note">
+    更多赛事信息可访问 <a href="https://web-winscore.com">捷报比分</a> · 数据仅供参考
+  </div>
+
+</div>
+
+</body>
+</html>
